@@ -25,7 +25,7 @@ def places(city_id):
                  strict_slashes=False)
 def place_by_id(place_id):
     """retrieves a Place object"""
-    place = storage.get("Place", place_id)
+    place = storage.get(Place, place_id)
     if not place:
         abort(404)
     return jsonify(place.to_dict())
@@ -35,7 +35,7 @@ def place_by_id(place_id):
                  strict_slashes=False)
 def delete_place(place_id):
     """Deletes a Place object"""
-    place = storage.get("Place", place_id)
+    place = storage.get(Place, place_id)
     if not place:
         abort(404)
     storage.delete(place)
@@ -79,7 +79,7 @@ def update_place(place_id):
     if json_place is None:
         abort(400, 'Not a JSON')
 
-    place = storage.get("Place", place_id)
+    place = storage.get(Place, place_id)
 
     if place is None:
         abort(404)
